@@ -1,0 +1,32 @@
+{
+    "files.exclude": {
+        "**/*.g.dart": true,
+        "**/*.freezed.dart": true,
+        "**/*.gr.dart": true,
+        "**/*.config.dart": true,
+        "**/*.part.dart": true,
+        "**/*.chopper.dart": true,
+        "**/build/": true,
+        "**/.dart_tool/": true,
+        "**/.flutter-plugins": true,
+        "**/.flutter-plugins-dependencies": true,
+        "**/.packages": true,
+        "**/android/.gradle/": true,
+        "**/android/captures/": true,
+        "**/android/gradlew": true,
+        "**/android/gradlew.bat": true,
+        "**/android/local.properties": true,
+        "**/ios/Flutter/Generated.xcconfig": true,
+        "**/ios/Flutter/flutter_export_environment.sh": true
+    },
+    "search.exclude": {
+        "**/*.g.dart": true,
+        "**/*.freezed.dart": true,
+        "**/*.gr.dart": true,
+        "**/*.config.dart": true,
+        "**/*.part.dart": true,
+        "**/*.chopper.dart": true,
+        "**/build/": true,
+        "**/.dart_tool/": true
+    }
+}
