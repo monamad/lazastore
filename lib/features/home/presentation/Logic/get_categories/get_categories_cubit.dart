@@ -11,6 +11,9 @@ class GetCategoriesCubit extends Cubit<GetCategoriesState> {
   Future<void> getCategories() async {
     emit(GetCategoriesLoadingState());
     final result = await _getCategoriesUseCase.call();
+    print(
+      'categories fetched-------------------------------------------------------------------',
+    );
 
     result.when(
       success: (categories) {

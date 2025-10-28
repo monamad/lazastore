@@ -11,7 +11,7 @@ part 'home_api_service.g.dart';
 abstract class HomeApiService {
   factory HomeApiService(Dio dio) = _HomeApiService;
 
-  @GET(ApiConstants.categoriesEndpoint)
+  @GET(ApiConstants.productsEndpoint)
   Future<ProductsResponse> getProducts({
     @Query('searchTerm') String? searchTerm,
     @Query('category') String? category,
@@ -21,7 +21,7 @@ abstract class HomeApiService {
     @Query('sortBy') String? sortBy,
     @Query('sortOrder') String? sortOrder,
     @Query('page') int? page,
-    @Query('pageSize') int? pageSize = 10,
+    @Query('pageSize') int? pageSize = 4,
   });
   @GET(ApiConstants.categoriesEndpoint)
   Future<CategoriesResponse> getCategories();
@@ -30,6 +30,6 @@ abstract class HomeApiService {
   Future<ProductReviewResponse> getProductReviews({
     @Query('productId') required String productId,
     @Query('page') int? page,
-    @Query('pageSize') int? pageSize = 10,
+    @Query('pageSize') int? pageSize = 4,
   });
 }

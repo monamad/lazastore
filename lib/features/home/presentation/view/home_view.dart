@@ -1,5 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:lazastore/features/home/presentation/widgets/brand_selector.dart';
+import 'package:lazastore/features/home/presentation/widgets/new_arrival_section.dart';
 import '../widgets/home_header.dart';
 import '../widgets/search_bar_widget.dart';
 import '../widgets/custom_drawer.dart';
@@ -13,10 +15,18 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final ValueNotifier<bool> _isDrawerOpenNotifier = ValueNotifier<bool>(false);
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
+    _scrollController.dispose();
     _isDrawerOpenNotifier.dispose();
+
     super.dispose();
   }
 
@@ -31,28 +41,30 @@ class _HomeViewState extends State<HomeView> {
       body: SafeArea(
         child: ValueListenableBuilder<bool>(
           valueListenable: _isDrawerOpenNotifier,
-          child: Column(
-            children: [
-              const HomeHeader(),
-
-              const SizedBox(height: 16),
-
-              const SearchBarWidget(),
-
-              const SizedBox(height: 24),
-
-              //const BrandSelector(),
-              const SizedBox(height: 24),
-
-              //const NewArrivalSection(),
-              const SizedBox(height: 24),
-            ],
-          ),
           builder: (context, isDrawerOpen, child) {
-            return isDrawerOpen
-                ? Blur(blur: 5.0, child: SingleChildScrollView(child: child))
-                : SingleChildScrollView(child: child);
+            return isDrawerOpen ? Blur(blur: 5.0, child: child!) : child!;
           },
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            child: Column(
+              children: [
+                const HomeHeader(),
+
+                const SizedBox(height: 16),
+
+                const SearchBarWidget(),
+
+                const SizedBox(height: 24),
+
+                const BrandSelector(),
+
+                const SizedBox(height: 24),
+
+                NewArrivalSection(scrollController: _scrollController),
+                const SizedBox(height: 24),
+              ],
+            ),
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(

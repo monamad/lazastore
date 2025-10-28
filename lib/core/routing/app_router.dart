@@ -32,8 +32,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => locator<GetCategoriesCubit>()),
-              BlocProvider(create: (context) => locator<GetProductCubit>()),
+              BlocProvider(
+                create: (context) =>
+                    GetCategoriesCubit(locator())..getCategories(),
+              ),
+              BlocProvider(
+                create: (context) => GetProductCubit(locator())..getProducts(),
+              ),
             ],
             child: const HomeView(),
           ),

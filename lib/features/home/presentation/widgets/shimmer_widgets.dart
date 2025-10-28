@@ -8,6 +8,7 @@ class ShimmerWidgets {
       highlightColor: Colors.grey[100]!,
       child: Container(
         width: 160,
+        height: 100,
         decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: BorderRadius.circular(12),
@@ -16,7 +17,7 @@ class ShimmerWidgets {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 120,
+              height: 100,
               decoration: const BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
@@ -68,7 +69,7 @@ class ShimmerWidgets {
         crossAxisCount: 2,
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
-        childAspectRatio: 0.75,
+        childAspectRatio: 0.70,
       ),
       itemCount: itemCount,
       itemBuilder: (context, index) => buildProductCardShimmer(),

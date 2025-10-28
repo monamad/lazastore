@@ -4,34 +4,33 @@ sealed class GetProductState {}
 
 class GetProductInitial extends GetProductState {}
 
-class ProductLoadingState extends GetProductState {
-  ProductLoadingState();
-}
+class ProductLoading extends GetProductState {}
 
 class ProductLoaded extends GetProductState {
   final PaginatedProductsEntity products;
   final bool isLoadingMore;
-  final bool hasMore;
+  final String? paginationError; // Track pagination failures separately
 
   ProductLoaded(
     this.products, {
     this.isLoadingMore = false,
-    this.hasMore = false,
+    this.paginationError,
   });
+
   ProductLoaded copyWith({
     PaginatedProductsEntity? products,
     bool? isLoadingMore,
-    bool? hasMore,
+    String? paginationError,
   }) {
     return ProductLoaded(
       products ?? this.products,
       isLoadingMore: isLoadingMore ?? this.isLoadingMore,
-      hasMore: hasMore ?? this.hasMore,
+      paginationError: paginationError,
     );
   }
 }
 
-class ProductError extends GetProductState {
+class ProductsError extends GetProductState {
   final String message;
-  ProductError(this.message);
+  ProductsError(this.message);
 }

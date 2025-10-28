@@ -22,9 +22,9 @@ class PaginatedProductsEntity {
       items: [...items, ...other.items],
       page: other.page,
       pageSize: other.pageSize,
-      totalCount: totalCount + other.totalCount,
+      totalCount: other.totalCount,
       hasNextPage: other.hasNextPage,
-      hasPreviousPage: hasPreviousPage,
+      hasPreviousPage: other.hasPreviousPage,
     );
   }
 }

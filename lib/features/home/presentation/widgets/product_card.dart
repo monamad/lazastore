@@ -4,7 +4,6 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String price;
-  final Color backgroundColor;
   final Widget imageWidget;
 
   const ProductCard({
@@ -12,7 +11,7 @@ class ProductCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.price,
-    required this.backgroundColor,
+
     required this.imageWidget,
   });
 
@@ -40,7 +39,7 @@ class ProductCard extends StatelessWidget {
               Container(
                 height: 120,
                 decoration: BoxDecoration(
-                  color: backgroundColor,
+               
                   borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(12),
                   ),

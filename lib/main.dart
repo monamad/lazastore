@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       child: BlocBuilder<AppControllerCubit, AppControllerState>(
         builder: (context, state) {
-          print(state.runtimeType);
           if (state is Initial) {
             return const SizedBox.shrink();
           } else {

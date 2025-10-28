@@ -33,7 +33,7 @@ class _HomeApiService implements HomeApiService {
     int? page,
     int? pageSize = 10,
   }) async {
-    final _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{'contentType': ''};
     final queryParameters = <String, dynamic>{
       r'searchTerm': searchTerm,
       r'category': category,
@@ -52,7 +52,7 @@ class _HomeApiService implements HomeApiService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'categories',
+            'products',
             queryParameters: queryParameters,
             data: _data,
           )

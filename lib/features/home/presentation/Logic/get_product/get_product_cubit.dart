@@ -6,62 +6,54 @@ import 'package:lazastore/features/home/presentation/Logic/get_product/get_produ
 class GetProductCubit extends Cubit<GetProductState> {
   GetProductCubit(this._getProductsUseCase) : super(GetProductInitial());
   final GetProductsUseCase _getProductsUseCase;
+  int pageSize = 4;
 
   Future<void> getProducts() async {
-    emit(ProductLoadingState());
-
-    final result = await _getProductsUseCase.call(page: 1, pageSize: 18);
+    emit(ProductLoading());
+    final result = await _getProductsUseCase.call(page: 1, pageSize: pageSize);
     result.when(
       success: (paginatedProducts) {
-        emit(
-          ProductLoaded(
-            paginatedProducts,
-            hasMore: paginatedProducts.hasNextPage,
-          ),
-        );
+        emit(ProductLoaded(paginatedProducts));
       },
       failure: (error) {
-        emit(ProductError(error.message));
+        emit(ProductsError(error.message));
       },
     );
   }
 
-  // Load more products
-  void loadMoreProducts() async {
+  Future<void> loadMoreProducts() async {
     final currentState = state;
-    if (currentState is ProductLoaded &&
-        !currentState.isLoadingMore &&
-        currentState.hasMore) {
-      emit(currentState.copyWith(isLoadingMore: true));
-      final currentProducts = currentState.products;
-      if (currentProducts.hasNextPage) {
-        final result = await _getProductsUseCase.call(
-          page: currentProducts.page + 1,
-          pageSize: 18,
+
+    // Prevent multiple simultaneous requests
+    if (currentState is! ProductLoaded) return;
+    if (currentState.isLoadingMore) return;
+    if (!currentState.products.hasNextPage) return;
+
+    final currentProducts = currentState.products;
+
+    // Set loading state
+    emit(currentState.copyWith(isLoadingMore: true, paginationError: null));
+
+    final result = await _getProductsUseCase.call(
+      page: currentProducts.page + 1,
+      pageSize: pageSize,
+    );
+
+    result.when(
+      success: (newPaginatedProducts) {
+        final updatedProducts = currentProducts + newPaginatedProducts;
+        emit(ProductLoaded(updatedProducts, isLoadingMore: false));
+      },
+      failure: (error) {
+        // Emit error state to show retry UI to user
+        emit(
+          ProductLoaded(
+            currentProducts,
+            isLoadingMore: false,
+            paginationError: error.message,
+          ),
         );
-        result.when(
-          success: (newpaginatedProducts) {
-            newpaginatedProducts += currentState.products;
-            emit(
-              ProductLoaded(
-                newpaginatedProducts,
-                hasMore: newpaginatedProducts.hasNextPage,
-                isLoadingMore: false,
-              ),
-            );
-          },
-          failure: (error) {
-            emit(
-              ProductLoaded(
-                currentProducts,
-                hasMore: currentProducts.hasNextPage,
-                isLoadingMore: false,
-              ),
-            );
-          },
-        );
-      }
-      return;
-    }
+      },
+    );
   }
 }

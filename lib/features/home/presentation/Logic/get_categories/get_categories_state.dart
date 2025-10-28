@@ -4,8 +4,8 @@ sealed class GetCategoriesState {}
 class GetCategoriesInitial extends GetCategoriesState {}
 
 class GetCategoriesSuccess extends GetCategoriesState {
-  final List<CategoryEntity> getcategories;
-  GetCategoriesSuccess(this.getcategories);
+  final List<CategoryEntity> categories;
+  GetCategoriesSuccess(this.categories);
 }
 
 class GetCategoriesError extends GetCategoriesState {

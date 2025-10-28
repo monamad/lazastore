@@ -73,7 +73,9 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<ApiResult<List<CategoryEntity>>> getCategories() async {
     try {
+      print('Fetching categories from API service...');
       final response = await _apiService.getCategories();
+      print('Categories fetched: ${response.categories.length}');
 
       final categories = response.categories
           .map(
