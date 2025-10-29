@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lazastore/features/home/presentation/Logic/get_categories/get_categories_cubit.dart';
-import 'package:lazastore/features/home/presentation/Logic/get_categories/get_categories_state.dart';
+import 'package:lazastore/features/home/Logic/get_categories/get_categories_cubit.dart';
+import 'package:lazastore/features/home/Logic/get_categories/get_categories_state.dart';
 import 'package:lazastore/features/home/presentation/widgets/categorys_list_widget.dart';
 
 class BrandSelector extends StatelessWidget {
@@ -9,6 +9,7 @@ class BrandSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Building BrandSelector');
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -36,6 +37,7 @@ class BrandSelector extends StatelessWidget {
           const SizedBox(height: 16),
           BlocBuilder<GetCategoriesCubit, GetCategoriesState>(
             builder: (context, state) {
+              print(state);
               if (state is GetCategoriesLoadingState) {
                 return const SizedBox(
                   height: 60,

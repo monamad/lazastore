@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lazastore/features/home/presentation/Logic/get_product/get_product_cubit.dart';
-import 'package:lazastore/features/home/presentation/Logic/get_product/get_product_state.dart';
+import 'package:lazastore/features/home/Logic/get_product/get_product_cubit.dart';
+import 'package:lazastore/features/home/Logic/get_product/get_product_state.dart';
 import 'package:lazastore/features/home/presentation/widgets/products_grid_view.dart';
 import 'shimmer_widgets.dart';
 
@@ -148,6 +148,8 @@ class NewArrivalSectiontemp extends StatelessWidget {
                     style: TextStyle(color: Colors.grey, fontSize: 14),
                   ),
                 ),
+                SizedBox(height: 16),
+                
               ],
             ),
           ),

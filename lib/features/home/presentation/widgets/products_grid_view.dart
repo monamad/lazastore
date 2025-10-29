@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lazastore/features/home/presentation/Logic/get_product/get_product_cubit.dart';
-import 'package:lazastore/features/home/presentation/Logic/get_product/get_product_state.dart';
+import 'package:lazastore/features/home/Logic/get_product/get_product_cubit.dart';
+import 'package:lazastore/features/home/Logic/get_product/get_product_state.dart';
 import 'package:lazastore/features/home/presentation/widgets/product_card.dart';
 import 'package:lazastore/features/home/presentation/widgets/shimmer_widgets.dart';
 import 'package:shimmer/shimmer.dart';

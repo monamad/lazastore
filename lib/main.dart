@@ -6,8 +6,8 @@ import 'package:lazastore/core/di/di_setup.dart';
 import 'package:lazastore/core/routing/app_router.dart';
 import 'package:lazastore/core/routing/routes.dart';
 import 'package:lazastore/features/app_controller/logic/app_controller_cubit.dart';
-
-// بسم الله الرحمن الرحيم - نية خالصة لوجه الله
+import 'package:lazastore/generated/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -44,12 +44,21 @@ class MyApp extends StatelessWidget {
             FlutterNativeSplash.remove();
 
             return MaterialApp(
+                          localizationsDelegates: [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+
               title: 'LazaStore',
               theme: ThemeData(
                 colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               ),
               onGenerateRoute: AppRouter.generateRoute,
               initialRoute: initialRoute,
+              // home: TestWidget(),
             );
           }
         },
@@ -58,3 +67,42 @@ class MyApp extends StatelessWidget {
   }
 }
 // m011415145@gmail.com
+
+// class TestWidget extends StatelessWidget {
+//   final ValueNotifier<bool> showBox = ValueNotifier<bool>(false);
+//   TestWidget({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: ValueListenableBuilder<bool>(
+//           valueListenable: showBox,
+//           builder: (context, isDrawerOpen, child) {
+//             return showBox.value == true
+//                 ? Container(color: Colors.green, child: child)
+//                 : Container(child: child);
+//           },
+//           child: Column(
+//             key: const Key('column_child'),
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: <Widget>[
+//               Builder(
+//                 builder: (context) {
+//                   print('Building TestWidget');
+//                   return Text('Test Widget', style: TextStyle(fontSize: 24.sp));
+//                 },
+//               ),
+//               ElevatedButton(
+//                 onPressed: () {
+//                   showBox.value = !showBox.value;
+//                 },
+//                 child: const Text('Toggle Box'),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

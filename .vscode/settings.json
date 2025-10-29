@@ -6,7 +6,6 @@
         "**/*.config.dart": true,
         "**/*.part.dart": true,
         "**/*.chopper.dart": true,
-        "**/build/": true,
         "**/.dart_tool/": true,
         "**/.flutter-plugins": true,
         "**/.flutter-plugins-dependencies": true,

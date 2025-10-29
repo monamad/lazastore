@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lazastore/core/networking/api_result.dart';
 import 'package:lazastore/features/home/domain/use_cases/get_products_use_case.dart';
-import 'package:lazastore/features/home/presentation/Logic/get_product/get_product_state.dart';
+import 'package:lazastore/features/home/Logic/get_product/get_product_state.dart';
 
 class GetProductCubit extends Cubit<GetProductState> {
   GetProductCubit(this._getProductsUseCase) : super(GetProductInitial());

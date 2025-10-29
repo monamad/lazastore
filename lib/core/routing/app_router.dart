@@ -4,8 +4,8 @@ import 'package:lazastore/core/Di/di_setup.dart';
 import 'package:lazastore/core/routing/routes.dart';
 import 'package:lazastore/features/auth/presentation/logic/login_cubit.dart';
 import 'package:lazastore/features/auth/presentation/view/login_view.dart';
-import 'package:lazastore/features/home/presentation/Logic/get_categories/get_categories_cubit.dart';
-import 'package:lazastore/features/home/presentation/Logic/get_product/get_product_cubit.dart';
+import 'package:lazastore/features/home/Logic/get_categories/get_categories_cubit.dart';
+import 'package:lazastore/features/home/Logic/get_product/get_product_cubit.dart';
 import 'package:lazastore/features/home/presentation/view/home_view.dart';
 import 'package:lazastore/features/onboarding/view/onboarding.dart';
 

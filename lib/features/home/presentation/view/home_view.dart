@@ -1,4 +1,5 @@
-import 'package:blur/blur.dart';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:lazastore/features/home/presentation/widgets/brand_selector.dart';
 import 'package:lazastore/features/home/presentation/widgets/new_arrival_section.dart';
@@ -42,24 +43,27 @@ class _HomeViewState extends State<HomeView> {
         child: ValueListenableBuilder<bool>(
           valueListenable: _isDrawerOpenNotifier,
           builder: (context, isDrawerOpen, child) {
-            return isDrawerOpen ? Blur(blur: 5.0, child: child!) : child!;
+            return Stack(
+              children: [
+                child!,
+                if (isDrawerOpen)
+                  BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
+                    child: Center(child: Container()),
+                  ),
+              ],
+            );
           },
           child: SingleChildScrollView(
             controller: _scrollController,
             child: Column(
               children: [
                 const HomeHeader(),
-
                 const SizedBox(height: 16),
-
                 const SearchBarWidget(),
-
                 const SizedBox(height: 24),
-
                 const BrandSelector(),
-
                 const SizedBox(height: 24),
-
                 NewArrivalSection(scrollController: _scrollController),
                 const SizedBox(height: 24),
               ],

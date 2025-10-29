@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lazastore/core/routing/routes.dart';
 import 'package:lazastore/features/app_controller/logic/app_controller_cubit.dart';
 
@@ -9,6 +10,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      width: 280.w,
       backgroundColor: Colors.white,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 25.0),
@@ -64,6 +66,10 @@ class CustomDrawer extends StatelessWidget {
                             // Navigate to settings
                           },
                         ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Switch(value: true, onChanged: (e) {}),
+                        ),
                       ],
                     );
                   } else {
@@ -72,6 +78,7 @@ class CustomDrawer extends StatelessWidget {
                 },
               ),
             ),
+
             ListTile(
               leading: Icon(Icons.logout, color: Colors.black),
               title: Text('Logout', style: TextStyle(color: Colors.red)),
